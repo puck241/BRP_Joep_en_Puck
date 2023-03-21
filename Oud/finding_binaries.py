@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import astropy.io.fits as f
 from os import listdir
 
-path = '/home/puck/Documents/BRP/data'
+# path = '/home/puck/Documents/BRP/data'
+path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data'
 
 #list of star names
 all_stars = np.array(sorted(listdir(path)))

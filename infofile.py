@@ -3,7 +3,8 @@ from os import listdir
 
 import functionfile as FF
 
-path = '/home/puck/Documents/BRP/data'
+# path = '/home/puck/Documents/BRP/data'
+path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data'
 
 #The images containing weird artifacts that make them useless
 weird_names = np.array(['2MASSJ11320835-5803199', '2MASSJ12041439-6418516', 
@@ -20,7 +21,7 @@ bin1 = np.array(['2MASSJ11555771-5254008', '2MASSJ12560830-6926539',
                  'HD_283629', 'HD_284266', 'HD_286179', 'UCAC4_454-011718', 
                  'UCAC4_475-014428', 'UCAC4_495-030196','UCAC4_501-011878'])
 
-#The binaries we found in our second searcg
+#The binaries we found in our second search
 bin2 = np.array(['2MASSJ10065573-6352086','2MASSJ11272881-3952572',
                  '2MASSJ11445217-6438548','2MASSJ11452016-5749094',
                  '2MASSJ12163007-6711477','2MASSJ12185802-5737191',
@@ -59,6 +60,5 @@ sin_data = FF.star_data(sin_names)
 #bin_data = FF.star_data(bin_names)
 
 #Array with calibrated data for all single stars
-sin_data_cal = np.array([FF.calibration(sin_data[i]) 
-                         for i in range(len(sin_names))])
+sin_data_cal = np.array([FF.calibration(sin_data[i]) for i in range(len(sin_names))])
 
