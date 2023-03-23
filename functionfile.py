@@ -3,8 +3,7 @@ import matplotlib.pyplot as plt
 import astropy.io.fits as f
 from os import listdir
 
-# path = '/home/puck/Documents/BRP/data'
-path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data'
+path = '/home/puck/Documents/BRP/data'
 
 def mask_stars(arr, star_list):
     ''' Makes a mask the size of star_list with False where the entry 
@@ -30,6 +29,8 @@ def star_data(star_list):
         arr[i] = data[0]
     return arr
 
+
+#-----------------------Data reduction-----------------------------------------
 def mask_but_center(arr):
     ''' Masks everything but the area with radius r in a circle 
     around the center. '''
@@ -44,34 +45,34 @@ def normalize(arr):
     arr = np.array(arr,dtype=np.float64)
     return arr/np.nanmax(arr)
 
-def calibration(arr):
-    ''' Masks and then normalizes the array. '''
+def data_reduction(arr):
+    ''' Masks and then normalizes an array with one image. '''
     mask_arr = mask_but_center(arr)
     norm_arr = normalize(mask_arr)
     return norm_arr
 
-def print_stars(cal_data, star_list, idx):
-    ''' Print the masked and normalised flux image of the star at index idx. '''
-    name, date = star_info(star_list, idx)
-    star = cal_data[idx]
-    
-    plt.subplot(1, 2, 1)
-    plt.imshow(star)
-    plt.gca().invert_yaxis()
-    plt.xlim(400, 624)
-    plt.ylim(400, 624)
+#--------------------Finding the perfect single star---------------------------
+def mask_aperture(arr):
+    ''' Picks out a ring between radius 20 and 30 around the star and 
+    returns this.  '''
+    x = y = np.linspace(-(len(arr))/2, (len(arr))/2, len(arr))
+    x_grid, y_grid = np.meshgrid(x, y)
+    r_grid = np.sqrt(x_grid**2 + y_grid**2)
+    arr[r_grid > 30] = None 
+    arr[r_grid < 20] = None
+    return arr
 
-    plt.subplot(1, 2, 2)
-    plt.imshow(star)
-    plt.gca().invert_yaxis()
-    plt.xlim(500, 524)
-    plt.ylim(500, 524)
+def arr_sort_rms(arr):
+    ''' Returns an array with indexes of the image with the best 
+    rms first and the worst rms last and returns the single star array 
+    sorted from best to worst rms. '''
+    rms_arr = np.nanstd(arr, axis = (1, 2)) 
+    idx = np.argsort(rms_arr) 
+    return idx, arr[idx]
 
-    plt.suptitle(f'{name}, {date}', y = 0.8)
-    plt.show()
-
-
-
+def rms_image(arr):
+    ''' Makes an image with the rms of every pixel '''
+    return np.nanstd(arr, axis = 0)
 
 
 

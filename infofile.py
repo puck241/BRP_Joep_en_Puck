@@ -1,18 +1,16 @@
+import functionfile as FF
+
 import numpy as np
 from os import listdir
 
-import functionfile as FF
+path = '/home/puck/Documents/BRP/data'
 
-# path = '/home/puck/Documents/BRP/data'
-path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data'
-
-#The images containing weird artifacts that make them useless
+#The stars with the weird artifacts in the data that make them useless
 weird_names = np.array(['2MASSJ11320835-5803199', '2MASSJ12041439-6418516', 
                         '2MASSJ12123577-5520273', '2MASSJ12192161-6454101', 
                         '2MASSJ12205449-6457242', '2MASSJ12472196-6808397',
-                        '2MASSJ12582559-7028490', '2MASSJ13032904-4723160'])
-
-#2MASSJ13032904-4723160 is star without flux image
+                        '2MASSJ12582559-7028490', '2MASSJ13032904-4723160',
+                        'V_V826_Tau'])
 
 #The binaries we found in our initial search
 bin1 = np.array(['2MASSJ11555771-5254008', '2MASSJ12560830-6926539', 
@@ -21,7 +19,7 @@ bin1 = np.array(['2MASSJ11555771-5254008', '2MASSJ12560830-6926539',
                  'HD_283629', 'HD_284266', 'HD_286179', 'UCAC4_454-011718', 
                  'UCAC4_475-014428', 'UCAC4_495-030196','UCAC4_501-011878'])
 
-#The binaries we found in our second search
+#The close binaries we found in our second search
 bin2 = np.array(['2MASSJ10065573-6352086','2MASSJ11272881-3952572',
                  '2MASSJ11445217-6438548','2MASSJ11452016-5749094',
                  '2MASSJ12163007-6711477','2MASSJ12185802-5737191',
@@ -40,25 +38,25 @@ bin_names = np.append(bin1, bin2)
 all_stars = np.array(sorted(listdir(path)))
 
 #Array with the names of single stars
-sin_names = all_stars[(FF.mask_stars(bin_names, all_stars)*
-                       FF.mask_stars(weird_names, all_stars))]
+sin_names = all_stars[(FF.mask_stars(bin_names, all_stars)
+                       *FF.mask_stars(weird_names, all_stars))]
 
-#Prints the amount of stars in every category
-#print('Single stars:',len(sin_names),'\nBinary stars:',len(bin_names),
-#      '\nWeird stars:',len(weird_names))
 
-#Prints the stars for which we have more than 1 epoch.
-#mask_dates = np.array([len(listdir(f'{path}/{all_stars[i]}'))!= 1 for i 
-#                       in range(len(all_stars))])
-#more_dates = all_stars[mask_dates]
-#print(more_dates)
 
-#Array with flux data for all single stars
-sin_data = FF.star_data(sin_names)
 
-#Array with flux data for all binary stars
-#bin_data = FF.star_data(bin_names)
 
-#Array with calibrated data for all single stars
-sin_data_cal = np.array([FF.calibration(sin_data[i]) for i in range(len(sin_names))])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
