@@ -1,13 +1,8 @@
-from regions import Regions
+import functionfile as FF
+import infofile as inf
+import numpy as np
 
 path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data'
-
-testreg = r'C:\Users\joepn\OneDrive\Documenten\BRP\data\2MASSJ11555771-5254008\2017-04-02\2MASSJ11555771-5254008_2017-04-02.reg'
-testreg2 = r'C:\Users\joepn\OneDrive\Documenten\BRP\data\2MASSJ12560830-6926539\2019-01-08\2MASSJ12560830-6926539_2019-01-08.reg'
-
-regread = Regions.read(testreg, format='ds9')
-regread2 = Regions.read(testreg2, format='ds9')
-
 
 def find_x_y_reg(file):
     ''' Opens the .reg file and returns the x and y coordinate in the file. loc_circle is the number of the line
@@ -21,26 +16,14 @@ def find_x_y_reg(file):
     first, second = data_reg.find(sep), data_reg.rfind(sep)
     return float(data_reg[7:first]), float(data_reg[(first+1):second])
 
+def make_reg_arr(bin_with_reg_list):
+    arr = np.empty((len(bin_with_reg_list), 2))
+    for i in range(len(bin_with_reg_list)):
+        name, date = FF.star_info(bin_with_reg_list, i)
+        regfile = f'{path}/{name}/{date}/' + f'{name}_{date}.reg'
+        x,y = find_x_y_reg(regfile)
+        arr[i]=x,y
+    return arr
 
-
-x, y = find_x_y_reg(testreg)
-print('xpuck',x)
-print('ypuck',y)
-
-print('')
-
-print('regread as string:',str(regread))
-print('type:',type(regread))
-
-print('')
-
-x= float(str(regread)[38:47])+1
-y= float(str(regread)[51:60])+1
-print('xjoep',x)
-print('yjoep',y)
-
-# print('string',str(regread2))
-# x2= float(str(regread2)[38:47])
-# y2= float(str(regread2)[51:60])
-# print(x2,y2)
+print(make_reg_arr(inf.bin_with_reg))
 

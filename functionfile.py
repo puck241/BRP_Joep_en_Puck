@@ -3,7 +3,9 @@ import matplotlib.pyplot as plt
 import astropy.io.fits as f
 from os import listdir
 
-path = '/home/puck/Documents/BRP/data'
+# path = '/home/puck/Documents/BRP/data' #Puck
+path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data' #Joep
+
 
 def mask_stars(arr, star_list):
     ''' Makes a mask the size of star_list with False where the entry 
@@ -30,7 +32,7 @@ def star_data(star_list):
     return arr
 
 
-#-----------------------Data reduction-----------------------------------------
+#--------------------------Data reduction--------------------------------------
 def mask_but_center(arr):
     ''' Masks everything but the area with radius r in a circle 
     around the center. '''
@@ -74,7 +76,26 @@ def rms_image(arr):
     ''' Makes an image with the rms of every pixel '''
     return np.nanstd(arr, axis = 0)
 
+#--------------------Finding the binaries from the reg files-------------------
+def find_x_y_reg(file):
+    ''' Opens the .reg file and returns the x and y coordinate in the file.'''
+    loc_circle = 3
+    sep = ','
+    with open(file, 'rt') as reg:
+        data_reg = reg.readlines()
+        data_reg = data_reg[loc_circle]
+    
+    first, second = data_reg.find(sep), data_reg.rfind(sep)
+    return float(data_reg[7:first]), float(data_reg[(first+1):second])
 
+def make_reg_arr(bin_with_reg_list):
+    arr = np.empty((len(bin_with_reg_list), 2))
+    for i in range(len(bin_with_reg_list)):
+        name, date = star_info(bin_with_reg_list, i)
+        regfile = f'{path}/{name}/{date}/' + f'{name}_{date}.reg'
+        x,y = find_x_y_reg(regfile)
+        arr[i]=x,y
+    return arr
 
 
 

@@ -3,7 +3,9 @@ import functionfile as FF
 import numpy as np
 from os import listdir
 
-path = '/home/puck/Documents/BRP/data'
+# path = '/home/puck/Documents/BRP/data' #Puck
+path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data' #Joep
+
 
 #The stars with the weird artifacts in the data that make them useless
 weird_names = np.array(['2MASSJ11320835-5803199', '2MASSJ12041439-6418516', 
@@ -41,22 +43,9 @@ all_stars = np.array(sorted(listdir(path)))
 sin_names = all_stars[(FF.mask_stars(bin_names, all_stars)
                        *FF.mask_stars(weird_names, all_stars))]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+bin_with_reg = np.array(['2MASSJ11555771-5254008','2MASSJ12560830-6926539',
+                         '2MASSJ13015435-4249422','2MASSJ13130714-4537438',
+                         'CD-43_3604','CVSO_751','Gaia_EDR3_3008386787098934144',
+                         'HD_283629','HD_284266','HD_286179','UCAC4_454-011718',
+                         'UCAC4_475-014428','UCAC4_495-030196'])
 
