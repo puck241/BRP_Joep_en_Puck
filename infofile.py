@@ -2,7 +2,7 @@ import numpy as np
 from os import listdir
 
 #Path leading to the data
-path = '/home/puck/Documents/brp/data' #Puck
+path = '/net/vdesk/data2/rooijakkers/data' #Puck
 # path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data' #Joep
 
 #Array containing the names of all stars
@@ -102,9 +102,6 @@ sin_y_names = np.array(['2MASSJ10560422-6152054', '2MASSJ11175186-6402056',
 
 #Array containing the names of all single stars
 sin_names = np.append(sin_wp_names, sin_y_names)
-
-
-
 
 
 

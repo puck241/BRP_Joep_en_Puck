@@ -1,9 +1,10 @@
+#%%
 import numpy as np
 import matplotlib.pyplot as plt
 import astropy.io.fits as f
 from os import listdir
 
-path = '/home/puck/Documents/brp/data' #Puck
+path = '/net/vdesk/data2/rooijakkers/data' #Puck
 #path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data' #Joep
 
 #%%
@@ -73,11 +74,11 @@ def arr_sort_rms(arr):
     
     :param arr: Array containing images of stars
     :type arr: numpy.ndarray
-    :returns:  arr sorted from best to worst rms
-    :rtype: numpy.ndarray """
+    :returns:  array with sorted images and arr sorted from best to worst rms
+    :rtype: numpy.ndarray, numpy.ndarray """
     rms_arr = np.nanstd(arr, axis = (1, 2)) #arr with rms of every image
     idx = np.argsort(rms_arr) #indexes sorted from best to worst rms
-    return arr[idx]
+    return idx, arr[idx]
 
 def median_image(sorted_arr):
     """ Creates a data cube where every ith image is the median of the first 
@@ -104,3 +105,5 @@ def median_image(sorted_arr):
         med_cube[i-2] = med
     
     return med_cube, rms_med_im
+
+# %%
