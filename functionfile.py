@@ -1,13 +1,13 @@
-#%%
 import numpy as np
 import matplotlib.pyplot as plt
 import astropy.io.fits as f
 from os import listdir
 
-path = '/net/vdesk/data2/rooijakkers/data' #Puck
+path = '/home/puck/Documents/brp/data'
+#path = '/net/vdesk/data2/rooijakkers/data' #Puck obs
 #path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data' #Joep
 
-#%%
+
 #------------------------Retrieving data---------------------------------
 def star_info(star_list, idx):
     """ Returns the name of the star and date of observation
@@ -31,7 +31,7 @@ def star_data(star_list):
         arr[i] = data[0]
     return arr
 
-#%%
+
 #-------------------First data reduction----------------------------------
 def mask_but_center(arr):
     ''' Masks everything but the area with radius r in a circle around the 
@@ -53,7 +53,7 @@ def data_reduction(arr):
     norm_arr = normalize(mask_arr)
     return norm_arr
 
-#%%
+
 #--------------Finding the perfect median star------------------------------
 def mask_aperture(arr):
     """ Creates a ring in arr between r = 30 and r = 50
@@ -106,4 +106,10 @@ def median_image(sorted_arr):
     
     return med_cube, rms_med_im
 
-# %%
+#-----------------------Subtract stars---------------------------------------
+def subtract_star(im, med_st):
+    ''' Subtract the median star from the image and images the results'''
+    return im-med_st
+
+
+

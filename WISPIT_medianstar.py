@@ -62,3 +62,8 @@ plt.ylim(512-dx, 512+dx)
 plt.show()
 
 # %%
+#Save this star as fits file that I can import later on so I do not have to 
+#keep running the code
+import astropy.io.fits as fits
+
+fits.writeto('WP_median_star.fits', opt_median_im_wp)

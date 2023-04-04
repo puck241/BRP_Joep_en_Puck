@@ -76,3 +76,8 @@ plt.savefig('optimal_single_star_aper_YSES.pdf')
 #plt.show()
 
 # %%
+#Save this star as fits file that I can import later on so I do not have to 
+#keep running the code
+import astropy.io.fits as fits
+
+fits.writeto('YSES_median_star.fits', opt_median_im_yses)

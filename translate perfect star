@@ -1,0 +1,20 @@
+import infofile as IF
+import functionfile as FF
+
+import astropy.io.fits as fits
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+#Median all star    
+with fits.open('all_median_star.fits') as hdul:
+    med_all = hdul[0].data
+    
+    
+#Want to cut out only the star and subtract that?
+
+#Want to translate the whole image?
+
+#Is there an easy way to automate the locating process so I do not have to 
+#look at every single image and determine where the binairy is. 
