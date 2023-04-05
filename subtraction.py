@@ -1,4 +1,4 @@
-#Run at vdesk tomorrow
+#Run at vdesk tomorrow 
 import numpy as np
 import matplotlib.pyplot as plt
 import astropy.io.fits as fits
@@ -14,7 +14,7 @@ with fits.open('YSES_median_star.fits') as hdul:
 with fits.open('all_median_star.fits') as hdul:
     med_all = hdul[0].data
     
-arr = IF.sin_y_names
+arr = IF.almost_all_stars
 
 data = FF.star_data(arr)
 copy = data.copy()

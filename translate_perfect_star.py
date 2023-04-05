@@ -30,3 +30,8 @@ with fits.open('all_median_star.fits') as hdul:
 #have the positions 
 
 #for the binaries where we have two epochs
+
+
+FF.star_info(IF.almost_all_stars)
+
+#np.savetxt('star_names.txt', almost_all_stars, fmt='%s')

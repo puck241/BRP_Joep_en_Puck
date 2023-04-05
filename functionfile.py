@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 import astropy.io.fits as f
 from os import listdir
 
-path = '/home/puck/Documents/brp/data'
-#path = '/net/vdesk/data2/rooijakkers/data' #Puck obs
-#path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data' #Joep
+#path = '/home/puck/Documents/brp/data'
+path = '/net/vdesk/data2/rooijakkers/data' #Puck obs
+#path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data' #Joep 
 
 
 #------------------------Retrieving data---------------------------------

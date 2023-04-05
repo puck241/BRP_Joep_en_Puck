@@ -2,8 +2,8 @@ import numpy as np
 from os import listdir
 
 #Path leading to the data
-path = '/home/puck/Documents/brp/data'
-#path = '/net/vdesk/data2/rooijakkers/data' #Puck obs
+#path = '/home/puck/Documents/brp/data'
+path = '/net/vdesk/data2/rooijakkers/data' #Puck obs
 # path = r'C:\Users\joepn\OneDrive\Documenten\BRP\data' #Joep
 
 #Array containing the names of all stars
@@ -106,9 +106,6 @@ sin_names = np.append(sin_wp_names, sin_y_names)
 
 #Array with all stars that are not weird
 almost_all_stars = np.append(sin_names, bin_names)
-
-
-
 
 
 
