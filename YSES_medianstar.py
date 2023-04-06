@@ -41,6 +41,7 @@ plt.title('Determining the optimal numer of images using YSES data')
 plt.plot(np.arange(1, len(median_rms)+1), median_rms)
 plt.xlabel('N')
 plt.ylabel('rms')
+plt.savefig('determining_rms_yses.pdf')
 plt.show()
 
 #%%
@@ -59,20 +60,20 @@ plt.title('Optimal median single star using only YSES')
 plt.imshow(opt_median_im_yses)
 plt.xlim(512-dx, 512+dx)
 plt.ylim(512-dx, 512+dx)
-plt.savefig('optimal_single_star_YSES.pdf')
+plt.savefig('optimal_single_star_YSES2.pdf')
 
 # %%
 #Making the median image of apertures containing the optimal number
-opt_median_im_aper_yses = np.median(aper[idx_opt_im], axis = 0)
+#opt_median_im_aper_yses = np.median(aper[idx_opt_im], axis = 0)
 
-dx = 50
-plt.figure()
-plt.title('Optimal median single star using only YSES')
-plt.imshow(np.log(opt_median_im_aper_yses))
-plt.xlim(512-dx, 512+dx)
-plt.ylim(512-dx, 512+dx)
-plt.colorbar()
-plt.savefig('optimal_single_star_aper_YSES.pdf')
+#dx = 50
+#plt.figure()
+#plt.title('Optimal median single star using only YSES')
+#plt.imshow(np.log(opt_median_im_aper_yses))
+#plt.xlim(512-dx, 512+dx)
+#plt.ylim(512-dx, 512+dx)
+#plt.colorbar()
+#plt.savefig('optimal_single_star_aper_YSES2.pdf')
 #plt.show()
 
 # %%
@@ -80,4 +81,4 @@ plt.savefig('optimal_single_star_aper_YSES.pdf')
 #keep running the code
 import astropy.io.fits as fits
 
-fits.writeto('YSES_median_star.fits', opt_median_im_yses)
+fits.writeto('YSES_median_star2.fits', opt_median_im_yses)

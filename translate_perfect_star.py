@@ -32,6 +32,7 @@ with fits.open('all_median_star.fits') as hdul:
 #for the binaries where we have two epochs
 
 
-FF.star_info(IF.almost_all_stars)
+info = np.array([FF.star_info(IF.almost_all_stars, i) for i in 
+                  range(len(IF.almost_all_stars))])
 
-#np.savetxt('star_names.txt', almost_all_stars, fmt='%s')
+np.savetxt('info.txt', info, fmt='%s')
