@@ -41,7 +41,7 @@ plt.title('Determining the optimal numer of images using all data')
 plt.plot(np.arange(1, len(median_rms)+1), median_rms)
 plt.xlabel('N')
 plt.ylabel('rms')
-plt.savefig('RMS_image_all_stars_2.pdf')
+plt.savefig('rms_all.pdf')
 
 #%%
 #Determining the optimal number of images 
@@ -59,25 +59,25 @@ plt.title('Optimal median single star using all stars')
 plt.imshow(opt_median_im_all)
 plt.xlim(512-dx, 512+dx)
 plt.ylim(512-dx, 512+dx)
-plt.savefig('optimal_single_star_all2.pdf')
+plt.savefig('med_star_all.pdf')
 
 # %%
 #Making the median image of apertures containing the optimal number
-opt_median_im_aper_all = np.median(aper[idx_opt_im], axis = 0)
+# opt_median_im_aper_all = np.median(aper[idx_opt_im], axis = 0)
 
-dx = 50
-plt.figure()
-plt.title('Optimal median single star using all stars')
-plt.imshow(np.log(opt_median_im_aper_all))
-plt.xlim(512-dx, 512+dx)
-plt.ylim(512-dx, 512+dx)
-plt.colorbar()
-plt.savefig('optimal_single_star_aper_all2.pdf')
-#plt.show()
+# dx = 50
+# plt.figure()
+# plt.title('Optimal median single star using all stars')
+# plt.imshow(np.log(opt_median_im_aper_all))
+# plt.xlim(512-dx, 512+dx)
+# plt.ylim(512-dx, 512+dx)
+# plt.colorbar()
+# plt.savefig('optimal_single_star_aper_all2.pdf')
+# #plt.show()
 
 # %%
 #Save this star as fits file that I can import later on so I do not have to 
 #keep running the code
 import astropy.io.fits as fits
 
-fits.writeto('all_median_star2.fits', opt_median_im_all)
+fits.writeto('med_star_all.fits', opt_median_im_all)

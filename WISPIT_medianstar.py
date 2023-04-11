@@ -41,7 +41,7 @@ plt.title('Determining the optimal numer of images using WISPITdata')
 plt.plot(np.arange(1, len(median_rms)+1), median_rms)
 plt.xlabel('N')
 plt.ylabel('rms')
-plt.savefig('rms_fig2_wp.pdf')
+plt.savefig('rms_wp.pdf')
 plt.show()
 
 #%%
@@ -60,11 +60,11 @@ plt.title('Optimal median single star using only WISPIT')
 plt.imshow(opt_median_im_wp)
 plt.xlim(512-dx, 512+dx)
 plt.ylim(512-dx, 512+dx)
-plt.show()
+plt.savefig('med_star_wp.pdf')
 
 # %%
 #Save this star as fits file that I can import later on so I do not have to 
 #keep running the code
 import astropy.io.fits as fits
 
-fits.writeto('WP_median_star2.fits', opt_median_im_wp)
+fits.writeto('med_star_wp.fits', opt_median_im_wp)
