@@ -33,13 +33,13 @@ def star_data(star_list):
 
 
 #-------------------First data reduction----------------------------------
-def mask_but_center(arr):
+def mask_but_center(arr, r):
     ''' Masks everything but the area with radius r in a circle around the 
     center. '''
     x = y = np.linspace(-(len(arr))/2, (len(arr))/2, len(arr))
     x_grid, y_grid = np.meshgrid(x, y)
     r_grid = np.sqrt(x_grid**2 + y_grid**2)
-    arr[r_grid > 100] = None 
+    arr[r_grid > r] = None 
     return arr
 
 def normalize(arr):
@@ -49,7 +49,7 @@ def normalize(arr):
 
 def data_reduction(arr):
     ''' Masks and then normalizes an array with one image. '''
-    mask_arr = mask_but_center(arr)
+    mask_arr = mask_but_center(arr, 100)
     norm_arr = normalize(mask_arr)
     return norm_arr
 

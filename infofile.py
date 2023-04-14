@@ -27,9 +27,8 @@ weird_names = np.array(['2MASSJ11320835-5803199', '2MASSJ11445217-6438548',
 #An array containing the names of all binary stars in the WiSPiT survey.
 bin_wp_names = np.array(['CD-43_3604','CVSO_751',
                          'Gaia_EDR3_3008386787098934144',
-                         'Gaia_EDR3_3014970387847972096',
                          'HD_283629', 'HD_284266', 'HD_286179',
-                         'UCAC4_127-038351', 'UCAC4_134-015937',
+                         'UCAC4_134-015937',
                          'UCAC4_200-015587', 'UCAC4_312-058127', 
                          'UCAC4_406-011818', 'UCAC4_454-011718', 
                          'UCAC4_475-014428', 'UCAC4_482-118442', 
@@ -46,16 +45,38 @@ bin_y_names= np.array(['2MASSJ10065573-6352086', '2MASSJ11272881-3952572',
 
 #An array containing the names of all binaries. 
 bin_names = np.append(bin_wp_names, bin_y_names)
+
+#Am array containing the names of all far away binaries
+bin_f_names = np.array(['CD-43_3604', 'CVSO_751',
+                        'HD_283629', 'HD_284266', 'HD_286179',
+                        'UCAC4_134-015937', 'UCAC4_406-011818',
+                        'UCAC4_475-014428', 'UCAC4_482-118442',
+                        'UCAC4_495-030196', 'UCAC4_501-011878',
+                        'V1319_TAU', '2MASSJ12560830-6926539',
+                        '2MASSJ13103245-4817036', '2MASSJ13130714-4537438', 
+                        '2MASSJ13335481-6536414'])
+
+#An array containing the names of all close binaries.
+bin_c_names = np.array(['Gaia_EDR3_3008386787098934144', 
+                        'UCAC4_134-015937', 'UCAC4_200-015587', 
+                        'UCAC4_312-058127', 'UCAC4_454-011718',
+                        'UCAC4_482-118442', 'UCAC4_495-030196',
+                        'UCAC4_496-013657', 'UCAC4_501-011878',
+                        '2MASSJ10065573-6352086', '2MASSJ11272881-3952572',
+                        '2MASSJ12160114-5614068', '2MASSJ12210808-5212226', 
+                        '2MASSJ13103245-4817036', '2MASSJ13174687-4456534'])
 #--------------------------------Single stars---------------------------------
 
 #An array containing the names of all single stars in the WiSPiT survey
 sin_wp_names = np.array(['2MASS_J05162151+1147472', '2MASS_J05264348+0143538',
                          '2MASS_J06145339+0003000', 'CoRoT_102718810',
+                         'Gaia_EDR3_3014970387847972096',
                          'GAIA_DR3_5854897321965963264',
                          'HD_285372', 'HD_285579',
                          'HD_285778', 'HD_285840',
                          'IRAS_08131-4432', 'J_618A',
                          'NSVS_14407747', 'RX_J2302.6+0034',
+                         'UCAC4_127-038351',
                          'UCAC4_141-082231', 'UCAC4_280-010722',
                          'UCAC4_319-026529', 'UCAC4_446-032370',
                          'UCAC4_461-018326', 'UCAC4_519-042115',
@@ -89,9 +110,14 @@ sin_y_names = np.array(['2MASSJ10560422-6152054', '2MASSJ11175186-6402056',
 sin_names = np.append(sin_wp_names, sin_y_names)
 
 
+#Array with only the YSES stars
+y_names = np.append(sin_y_names, bin_y_names)
+
+#Array with only the WiSPiT stars
+wp_names = np.append(sin_wp_names, bin_wp_names)
+
 #Array with all stars that are not weird
 almost_all_stars = np.append(sin_names, bin_names)
-
 
 
 

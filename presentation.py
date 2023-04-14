@@ -5,19 +5,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import astropy.io.fits as fits
 
-wd_data = FF.star_data(IF.sin_wp_names)
+wd_data = FF.star_data(IF.bin_names)
 wd_clb_data = np.array([FF.data_reduction(wd_data[i]) 
-                          for i in range(len(IF.sin_wp_names))])
+                          for i in range(len(IF.bin_names))])
 
 #Median all star    
-with fits.open('all_median_star2.fits') as hdul:
+with fits.open('med_star_all.fits') as hdul:
     med_all = hdul[0].data
 
 
-for i in range(len(IF.sin_wp_names)):
+for i in range(len(IF.bin_names)):
     rest = FF.subtract_star(wd_clb_data[i], med_all)
     
-    name, date = FF.star_info(IF.sin_wp_names, i)
+    name, date = FF.star_info(IF.bin_names, i)
     
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20,10))
     ax1.imshow(wd_clb_data[i])
