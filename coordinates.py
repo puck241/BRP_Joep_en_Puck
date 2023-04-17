@@ -7,14 +7,8 @@ file = 'coordinates_ruwe.csv'
 
 data_type = np.dtype([('name', 'U29'), ('type', 'U1'), ('ruwe', 'f')])
 
-data_raw = np.loadtxt(file, dtype = data_type, skiprows = 1,
-                   delimiter = ',', usecols = (0, 1, 4))
-
-#For one star I did not get the coordinates yet and I put the ruwe to -1
-#to be able to delete this one
-for i in range(len(data_raw['ruwe'])):
-    if data_raw['ruwe'][i] < 0:
-        data = np.delete(data_raw, (i), axis = 0)
+data = np.loadtxt(file, dtype = data_type, skiprows = 1,
+                  delimiter = ',', usecols = (0, 1, 4))
 
         
 single = data[(data['type'] == 's')]

@@ -19,7 +19,7 @@ clb_data = np.array([FF.data_reduction(copy[i])
 
 #%%
 #Choose binary
-binary = clb_data[0]
+binary = clb_data[5]
 #%%
 #Plot star for which you want to determine the position of the binary
 dx = 100
@@ -44,36 +44,36 @@ plt.show
 #%%
 #Zoom in on binary to determine position
 rest = FF.subtract_star(binary, med_all)
-x = 512
-y = 512
-a = 20
+x1 = 539
+y1 = 542
+a1 = 10
 
 dx = 100
 plt.figure()
-plt.imshow(rest)
-plt.xlim(x_1-a_1, y_1+a_1)
-plt.ylim(x_1-a_1, y_1+a_1)
+plt.imshow(rest, origin = 'lower')
+plt.xlim(x1-a1, x1+a1)
+plt.ylim(y1-a1, y1+a1)
 plt.colorbar()
 plt.show
 #%%
-#Cut out this part of the sky
+#Cut out this part of the sky and center the binary in the middle
 rest_copy = rest.copy()
-new_rest = rest_copy[y-a:y+a, x-a:x+a] 
+cut_out = rest_copy[y1-a1:y1+a1, x1-a1:x1+a1] 
 
 plt.figure()
-plt.imshow(new_rest)
+plt.imshow(cut_out, origin = 'lower')
 plt.colorbar()
 plt.show()
 
 #%%
-#Subtract the median star from the binary
+#Subtract the median star from second star
 mid = 512
-changed_bin = np.nanmax(new_rest)*med_all[mid-a:mid+a, mid-a:mid+a]
+changed_bin = np.nanmax(cut_out)*med_all[mid-a1:mid+a1, mid-a1:mid+a1]
 
-rest_new = FF.subtract_star(new_rest, changed_bin)
+rest2 = FF.subtract_star(cut_out, changed_bin)
 
 plt.figure()
-plt.imshow(rest_new, origin = 'lower')
+plt.imshow(rest2, origin = 'lower')
 plt.colorbar()
 plt.show()
 
