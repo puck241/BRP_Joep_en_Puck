@@ -25,6 +25,7 @@ binary = clb_data[0]
 #Plot star for which you want to determine the position of the binary
 dx = 10
 plt.figure()
+plt.title(f'{IF.bin_c_names[0]}')
 plt.imshow(binary)
 plt.colorbar()
 plt.xlim(512-dx, 512+dx)
@@ -36,7 +37,7 @@ plt.show
 p_1 = (510, 512)
 p_2 = (514, 510)
 #%%
-#Cut out binary
+#Cut out and center the main star
 cut_bin = binary[p_1[1]-dx:p_1[1]+dx, p_1[0]-dx:p_1[0]+dx]
 
 plt.figure()
